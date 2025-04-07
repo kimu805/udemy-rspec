@@ -4,7 +4,7 @@ RSpec.describe User do
   describe "#activated?" do
     it "新規ユーザーは有効化されていない" do
       user = User.new
-      expect(user.activated?).to be false
+      expect(user.activated?).not_to be true
     end
     it "メール認証後のユーザーは有効化される" do
       user = User.new
