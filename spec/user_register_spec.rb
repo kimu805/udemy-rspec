@@ -3,9 +3,9 @@ require_relative "../user_register"
 RSpec.describe UserRegister do
   describe "#register" do
     it "ウェルカムメールが送信される" do
-      email_service = double(EmailService)
+      email_service = instance_double(EmailService)
 
-      expect(email_service).to receive(:send_welcome_mail).with("test@example.com")
+      expect(email_service).to receive(:deliver_welcome_mail).with("test@example.com")
 
       user_register = UserRegister.new(email_service)
       user_register.register("test@example.com")
