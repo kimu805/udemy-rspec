@@ -9,7 +9,7 @@ RSpec.describe User do
 
     it "ユーザー情報に必要な値が含まれている" do
       user = User.new(name: "山田太郎", age: 25, email: "yamada@example.com")
-      expect(user.data.values).to include("山田太郎")
+      expect(user.data.values).to include("山田太郎", 25, "yamada@example.com")
     end
   end
 end
