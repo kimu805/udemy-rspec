@@ -2,16 +2,20 @@ require_relative "../api_service"
 
 RSpec.describe ApiService do
   describe "#fetch_photos" do
-    before do
-      allow(Net::HTTP).to receive(:get).and_return([
+    let(:photos_response) do
+      [
         {
           id: 1,
           title: "写真1",
           url: "https://example.com/photo1.jpg"
         }
-      ].to_json)
+      ].to_json
     end
     
+    before do
+      allow(Net::HTTP).to receive(:get).and_return(photos_response)
+    end
+
     it "写真データを取得できる" do
       api_service = ApiService.new
       photos = api_service.fetch_photos
