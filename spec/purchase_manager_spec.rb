@@ -2,16 +2,28 @@ require_relative "../purchase_manager.rb"
 
 RSpec.describe PurchaseManager do
   describe "#purchase" do
-    it "在庫が十分にある場合は購入に成功する" do
-      stock_service = instance_double(
-        StockService,
-        fetch_stock_quantity: 50
-      )
+    let(:quantity) { 30 }
+    let(:product_id) { 123 }
+    let(:stock_quantity) { 50 }
+    let(:stock_service) { instance_double(
+      StockService,
+      fetch_stock_quantity: stock_quantity
+    )}
 
-      purchase_manager = PurchaseManager.new(stock_service)
-      result = purchase_manager.purchase(123, 30)
+    subject { PurchaseManager.new(stock_service).purchase(product_id, quantity) }
 
-      expect(result).to be true
+    context "在庫が十分にある場合" do
+      it "購入に成功する" do
+        expect(subject).to be true
+      end
+    end
+
+    context "在庫が不足している場合" do
+      let(:stock_quantity) { 29 }
+      
+      it "購入に失敗する" do
+        expect(subject).to be false
+      end
     end
   end
 end
