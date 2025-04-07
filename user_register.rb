@@ -8,6 +8,6 @@ class UserRegister
   def register(email)
     puts "ユーザー登録中..."
 
-    @email_service.send_welcome_mail(email)
+    @email_service.deliver_welcome_mail(email)
   end
 end
