@@ -10,8 +10,7 @@ RSpec.describe PurchaseManager do
 
     context "在庫が十分にある場合" do
       it "購入に成功する" do
-        result = subject
-        expect(result).to be true
+        expect(subject).to be true
       end
     end
   end
