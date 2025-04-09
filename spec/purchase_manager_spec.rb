@@ -13,5 +13,12 @@ RSpec.describe PurchaseManager do
         expect(subject).to be true
       end
     end
+
+    context "在庫が不足している場合" do
+      let(:stock_quantity) { 29 }
+      it "購入に失敗する" do
+        expect(subject).to be false
+      end
+    end
   end
 end
